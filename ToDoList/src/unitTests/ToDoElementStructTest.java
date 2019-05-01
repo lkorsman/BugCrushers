@@ -17,18 +17,21 @@ class ToDoElementStructTest {
 	 * 
 	 * Test String parameter in ctor 
 	 * Given: null String
-	 * Expect: not null object
+	 * Expect: Throws Illegal Argument Exception because an object is only created 
+	 * with valid String parameters. A valid String is not null and at least 1 
+	 * character in length. 
 	 */
 	@Test
-	void ToDoElementStruct_ctorStringNull_notNull() {
+	void ToDoElementStruct_ctorStringNull_Exception() {
 		
 		String txt = null; 
 		int prio = 0; 
 		LocalDate da = LocalDate.now(); 
 		boolean bool = false; 
 		
-		ToDoElementStruct td = new ToDoElementStruct(txt, prio, da, bool);
-		assertNotNull(td);	
+		assertThrows(IllegalArgumentException.class, () -> {
+			ToDoElementStruct td = new ToDoElementStruct(txt, prio, da, bool);	 
+		});
 	}
 	
 	/**
@@ -36,18 +39,21 @@ class ToDoElementStructTest {
 	 * 
 	 * Test String parameter in ctor 
 	 * Given: empty String
-	 * Expect: not null object
+	 * Expect: Throws Illegal Argument Exception because an object is only created 
+	 * with valid String parameters. A valid String is not null and at least 1 
+	 * character in length. 
 	 */
 	@Test
-	void ToDoElementStruct_ctorStringEmpty_notNull() {
+	void ToDoElementStruct_ctorStringEmpty_Exception() {
 		
 		String txt = ""; 
 		int prio = 0; 
 		LocalDate da = LocalDate.now(); 
 		boolean bool = false; 
 		
-		ToDoElementStruct td = new ToDoElementStruct(txt, prio, da, bool);
-		assertNotNull(td);	
+		assertThrows(IllegalArgumentException.class, () -> {
+			ToDoElementStruct td = new ToDoElementStruct(txt, prio, da, bool);	 
+		});
 	}
 	
 	/**
@@ -95,18 +101,20 @@ class ToDoElementStructTest {
 	 * 
 	 * Test int parameter in ctor 
 	 * Given: negative int (-1)
-	 * Expect: Priority equals -1
+	 * Expect: Throws Illegal Argument Exception because an object is only created 
+	 * with valid int parameters. A valid int between 1-5, inclusive.
 	 */
 	@Test
-	void ToDoElementStruct_ctorIntNegative_EqualsNegOne() {
+	void ToDoElementStruct_ctorIntNegative_Exception() {
 		
 		String txt = "to do item"; 		
 		int prio = -1; 
 		LocalDate da = LocalDate.now(); 
 		boolean bool = false; 
 		
-		ToDoElementStruct td = new ToDoElementStruct(txt, prio, da, bool);
-		assertEquals(prio, td.getPriority());	
+		assertThrows(IllegalArgumentException.class, () -> {
+			ToDoElementStruct td = new ToDoElementStruct(txt, prio, da, bool);	 
+		});	
 	}
 	
 	/**
@@ -114,18 +122,20 @@ class ToDoElementStructTest {
 	 * 
 	 * Test int parameter in ctor 
 	 * Given: priority of zero
-	 * Expect: Priority equals 0
+	 * Expect: Throws Illegal Argument Exception because an object is only created 
+	 * with valid int parameters. A valid int between 1-5, inclusive.
 	 */
 	@Test
-	void ToDoElementStruct_ctorIntZero_EqualsZero() {
+	void ToDoElementStruct_ctorIntZero_Exception() {
 		
 		String txt = "to do item"; 		
 		int prio = 0; 
 		LocalDate da = LocalDate.now(); 
 		boolean bool = false; 
 		
-		ToDoElementStruct td = new ToDoElementStruct(txt, prio, da, bool);
-		assertEquals(prio, td.getPriority());	
+		assertThrows(IllegalArgumentException.class, () -> {
+			ToDoElementStruct td = new ToDoElementStruct(txt, prio, da, bool);	 
+		});		
 	}
 	
 	/**
@@ -171,20 +181,20 @@ class ToDoElementStructTest {
 	 * 
 	 * Test int parameter in ctor 
 	 * Given: Priority equal to max GUI value + 1 (6)
-	 * Expect: Priority equals 6
+	 * Expect: Throws Illegal Argument Exception because an object is only created 
+	 * with valid int parameters. A valid int between 1-5, inclusive.
 	 */
 	@Test
-	void ToDoElementStruct_ctorIntLMaxGuiVal_Equals6() {
+	void ToDoElementStruct_ctorIntLMaxGuiVal_Exception() {
 		
 		String txt = "to do item"; 		
 		int prio = 6; 
 		LocalDate da = LocalDate.now(); 
 		boolean bool = false; 
 		
-		ToDoElementStruct td = new ToDoElementStruct(txt, prio, da, bool);
-		assertEquals(prio, td.getPriority());	
+		assertThrows(IllegalArgumentException.class, () -> {
+			ToDoElementStruct td = new ToDoElementStruct(txt, prio, da, bool);	 
+		});	
 	}
 	
-
-
 }
