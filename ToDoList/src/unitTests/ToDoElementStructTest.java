@@ -2,10 +2,10 @@ package unitTests;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import java.time.LocalDate;
-
 import org.junit.jupiter.api.Test;
-
 import tdl.model.todoelements.ToDoElementStruct;
 
 class ToDoElementStructTest {
@@ -196,5 +196,238 @@ class ToDoElementStructTest {
 			ToDoElementStruct td = new ToDoElementStruct(txt, prio, da, bool);	 
 		});	
 	}
+	
+	/**
+	 * -----------------------------------------------------------
+	 * UNIT TESTS ADDED FOR MILESTONE 2 - GOAL: 100% CODE COVERAGE
+	 * -----------------------------------------------------------
+	 */
+	
+	/**
+	 * Test 10
+	 * 
+	 * Test no argument constructor 
+	 * Given: No arguments 
+	 * Expect: Object to be not null
+	 */
+	
+	@Test
+	void ToDoElementStruct_noArgCtor_notNull() {
+		
+		ToDoElementStruct td = new ToDoElementStruct();
+		assertNotNull(td);	
+	}
+	
+	/**
+	 * Test 11
+	 * 
+	 * Test getToDoText()
+	 * Given: No arguments 
+	 * Expect: String to match no arg ctor String
+	 */
+	
+	@Test
+	void ToDoElementStruct_getToDoText_MatchString() {
+		
+		String todoText = "studying philosophy...!";
+		
+		ToDoElementStruct td = new ToDoElementStruct();
+		assertEquals(todoText, td.getToDoText());
+	}
+	
+	/**
+	 * Test 12
+	 * 
+	 * Test getDDay()
+	 * Given: No arguments 
+	 * Expect: LocalDate Dday to match no arg ctor's LocalDate
+	 */
+	
+	@Test
+	void ToDoElementStruct_getDDay_matchDDay() {
+		
+		LocalDate Dday = LocalDate.now().plusDays(7);
+		
+		ToDoElementStruct td = new ToDoElementStruct();
+		assertEquals(Dday, td.getDDay());
+	}
+	
+	/**
+	 * Test 13
+	 * 
+	 * Test getCheckValue()
+	 * Given: No arguments 
+	 * Expect: checkValue to equal false 
+	 */
+	
+	@Test
+	void ToDoElementStruct_getCheckValue_isFalse() {
+				
+		ToDoElementStruct td = new ToDoElementStruct();
+		assertEquals(false, td.getCheckValue());
+	}
+	
+	/**
+	 * Test 14
+	 * 
+	 * Test setToDoText(String s)
+	 * Given: String = "test"
+	 * Expect: getCheckValue to return a String = "test"
+	 */
+	
+	@Test
+	void ToDoElementStruct_setToDoText_StringEqualsTest() {
+		
+		String s = "test";
+				
+		ToDoElementStruct td = new ToDoElementStruct();
+		td.setToDoText(s);
+		assertEquals(s, td.getToDoText());
+	}
+	
+	/**
+	 * Test 15
+	 * 
+	 * Test setPriority(int i)
+	 * Given: int = 1
+	 * Expect: priority = 1
+	 */
+	
+	@Test
+	void ToDoElementStruct_setPriority_IntEquals1() {
+		
+		int i = 1; 
+				
+		ToDoElementStruct td = new ToDoElementStruct();
+		td.setPriority(i);
+		assertEquals(i, td.getPriority());
+	}
+	
+	/**
+	 * Test 16
+	 * 
+	 * Test setDday(LocalDate iDday)
+	 * Given: LocalDate a 8 days from today
+	 * Expect: Dday to equal given LocalDate
+	 */
+	
+	@Test
+	void ToDoElementStruct_setDday_DdayEquals8DaysFromToday() {
+		
+		LocalDate Dday = LocalDate.now().plusDays(8);
+				
+		ToDoElementStruct td = new ToDoElementStruct();
+		td.setDday(Dday);
+		assertEquals(Dday, td.getDDay());
+	}
+	
+	/**
+	 * Test 17
+	 * 
+	 * Test setCheckValue(boolean bool)
+	 * Given: CheckValue = True
+	 * Expect: CheckValue to be set to True
+	 */
+	
+	@Test
+	void ToDoElementStruct_setCheckValue_CheckValueEqualsTrue() {
+		
+		boolean b = true; 
+				
+		ToDoElementStruct td = new ToDoElementStruct();
+		td.setCheckValue(b);
+		assertEquals(b, td.getCheckValue());
+	}
+	
+	/**
+	 * Test 18
+	 * 
+	 * Test setCheckValue(boolean bool)
+	 * Given: CheckValue = True
+	 * Expect: CheckValue to be set to True
+	 */
+	
+	/**
+	 * Test 18
+	 * 
+	 * Test printThis()
+	 * Given: No arguments
+	 * Expect: void 
+	 */
+
+	@Test
+	void ToDoElementStruct_printThis_StringsAreEqual() {
+		
+		ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+		PrintStream originalOut = System.out;
+		
+		String s = "to do : studying philosophy...!/ priority : 5/ Dday : " + LocalDate.now().plusDays(7) + "\n";
+
+		// set up
+		System.setOut(new PrintStream(outContent));
+				
+		// test
+		ToDoElementStruct td = new ToDoElementStruct();
+		td.printThis(); 
+		
+		assertTrue(s.equals(outContent.toString()));
+		
+		// reset 
+	    System.setOut(originalOut);
+
+	}
+
+	/**
+	 * Test 19
+	 * 
+	 * Test compareTo(ToDoElementStruct target) - test if
+	 * Given: ToDoElementStruct object with test priority greater than target priority
+	 * Expect: returns 1
+	 */
+	
+	@Test
+	void ToDoElementStruct_compareTo_hitIf_returnOne() {
+
+		ToDoElementStruct td_target = new ToDoElementStruct();
+		td_target.setPriority(1);
+		ToDoElementStruct td_test = new ToDoElementStruct();
+
+		assertEquals(1, td_test.compareTo(td_target));
+	}
+	
+	/**
+	 * Test 20
+	 * 
+	 * Test compareTo(ToDoElementStruct target) - else if
+	 * Given: ToDoElementStruct object with test priority less than target priority
+	 * Expect: returns 1
+	 */
+	
+	@Test
+	void ToDoElementStruct_compareTo_hitElseIf_returnNegOne() {
+
+		ToDoElementStruct td_target = new ToDoElementStruct();
+		ToDoElementStruct td_test = new ToDoElementStruct();
+		td_test.setPriority(1);
+
+		assertEquals(-1, td_test.compareTo(td_target));
+	}
+	
+	/**
+	 * Test 21
+	 * 
+	 * Test compareTo(ToDoElementStruct target) - hidden else 
+	 * Given: ToDoElementStruct object with test priority = target priority
+	 * Expect: returns 0
+	 */
+	
+	@Test
+	void ToDoElementStruct_compareTo_hitHiddenElse_returnZero() {
+
+		ToDoElementStruct td_target = new ToDoElementStruct();
+		ToDoElementStruct td_test = new ToDoElementStruct();
+
+		assertEquals(0, td_test.compareTo(td_target));
+	}	
 	
 }
