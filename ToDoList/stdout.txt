@@ -1,0 +1,8 @@
+Buildfile: /Users/lukekorsman/eclipse-workspace/ToDoList/ToDoList/build.xml
+
+ToDoElementStructTest:
+    [junit] Running unitTests.ToDoElementStructTest
+    [junit] Tests run: 21, Failures: 5, Errors: 0, Skipped: 0, Time elapsed: 0.37 sec
+
+BUILD SUCCESSFUL
+Total time: 1 second

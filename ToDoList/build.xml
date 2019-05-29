@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- WARNING: Eclipse auto-generated file.
+              Any modifications will be overwritten.
+              To include a user specific buildfile here, simply create one in the same
+              directory with the processing instruction <?eclipse.ant.import?>
+              as the first entry and export the buildfile again. --><project basedir="." default="build" name="ToDoList">
+    <property environment="env"/>
+    <property name="junit.output.dir" value="junit"/>
+    <property name="debuglevel" value="source,lines,vars"/>
+    <property name="target" value="1.8"/>
+    <property name="source" value="1.8"/>
+    <path id="jsoon.userclasspath"/>
+    <path id="LGoodDatePicker.userclasspath"/>
+    <path id="JUnit 5.libraryclasspath">
+        <pathelement location="../../../../../Applications/Eclipse.app/Contents/Eclipse/plugins/org.junit.jupiter.api_5.0.0.v20170910-2246.jar"/>
+        <pathelement location="../../../../../Applications/Eclipse.app/Contents/Eclipse/plugins/org.junit.jupiter.engine_5.0.0.v20170910-2246.jar"/>
+        <pathelement location="../../../../../Applications/Eclipse.app/Contents/Eclipse/plugins/org.junit.jupiter.migrationsupport_5.0.0.v20170910-2246.jar"/>
+        <pathelement location="../../../../../Applications/Eclipse.app/Contents/Eclipse/plugins/org.junit.jupiter.params_5.0.0.v20170910-2246.jar"/>
+        <pathelement location="../../../../../Applications/Eclipse.app/Contents/Eclipse/plugins/org.junit.platform.commons_1.0.0.v20170910-2246.jar"/>
+        <pathelement location="../../../../../Applications/Eclipse.app/Contents/Eclipse/plugins/org.junit.platform.engine_1.0.0.v20170910-2246.jar"/>
+        <pathelement location="../../../../../Applications/Eclipse.app/Contents/Eclipse/plugins/org.junit.platform.launcher_1.0.0.v20170910-2246.jar"/>
+        <pathelement location="../../../../../Applications/Eclipse.app/Contents/Eclipse/plugins/org.junit.platform.runner_1.0.0.v20170910-2246.jar"/>
+        <pathelement location="../../../../../Applications/Eclipse.app/Contents/Eclipse/plugins/org.junit.platform.suite.api_1.0.0.v20170910-2246.jar"/>
+        <pathelement location="../../../../../Applications/Eclipse.app/Contents/Eclipse/plugins/org.junit.vintage.engine_4.12.0.v20170910-2246.jar"/>
+        <pathelement location="../../../../../Applications/Eclipse.app/Contents/Eclipse/plugins/org.opentest4j_1.0.0.v20170910-2246.jar"/>
+        <pathelement location="../../../../../Applications/Eclipse.app/Contents/Eclipse/plugins/org.apiguardian_1.0.0.v20170910-2246.jar"/>
+        <pathelement location="../../../../../Applications/Eclipse.app/Contents/Eclipse/plugins/org.junit_4.12.0.v201504281640/junit.jar"/>
+        <pathelement location="../../../../../Applications/Eclipse.app/Contents/Eclipse/plugins/org.hamcrest.core_1.3.0.v201303031735.jar"/>
+    </path>
+    <path id="ToDoList.classpath">
+        <pathelement location="bin"/>
+        <path refid="jsoon.userclasspath"/>
+        <path refid="LGoodDatePicker.userclasspath"/>
+        <pathelement location="lib/json_simple-1.1.jar"/>
+        <pathelement location="lib/LGoodCalendarAPI.jar"/>
+        <path refid="JUnit 5.libraryclasspath"/>
+        <pathelement location="../../../Documents/Java/javax.mail.jar"/>
+    </path>
+    <target name="init">
+        <mkdir dir="bin"/>
+        <copy includeemptydirs="false" todir="bin">
+            <fileset dir="src">
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="clean">
+        <delete dir="bin"/>
+    </target>
+    <target depends="clean" name="cleanall"/>
+    <target depends="build-subprojects,build-project" name="build"/>
+    <target name="build-subprojects"/>
+    <target depends="init" name="build-project">
+        <echo message="${ant.project.name}: ${ant.file}"/>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="bin" includeantruntime="false" source="${source}" target="${target}">
+            <src path="src"/>
+            <classpath refid="ToDoList.classpath"/>
+        </javac>
+    </target>
+    <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
+    <target name="New_configuration">
+        <java classname="tdl.main" failonerror="true" fork="yes">
+            <classpath refid="ToDoList.classpath"/>
+        </java>
+    </target>
+    <target name="ToDoElementStructTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="unitTests.ToDoElementStructTest" todir="${junit.output.dir}"/>
+            <jvmarg line="-ea"/>
+            <classpath refid="ToDoList.classpath"/>
+        </junit>
+    </target>
+    <target name="BasicTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="unitTests.BasicTest" todir="${junit.output.dir}"/>
+            <jvmarg line="-ea"/>
+            <classpath refid="ToDoList.classpath"/>
+        </junit>
+    </target>
+    <target name="ToDoElementStructTest (1)">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="tdl.model.todoelements.ToDoElementStructTest" todir="${junit.output.dir}"/>
+            <jvmarg line="-ea"/>
+            <classpath refid="ToDoList.classpath"/>
+        </junit>
+    </target>
+    <target name="TestRunner">
+        <java classname="unitTests.TestRunner" failonerror="true" fork="yes">
+            <classpath refid="ToDoList.classpath"/>
+        </java>
+    </target>
+    <target name="junitreport">
+        <junitreport todir="${junit.output.dir}">
+            <fileset dir="${junit.output.dir}">
+                <include name="TEST-*.xml"/>
+            </fileset>
+            <report format="frames" todir="${junit.output.dir}"/>
+        </junitreport>
+    </target>
+</project>
