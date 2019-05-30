@@ -1,7 +1,6 @@
 #!/bin/bash
 
-OUTFILE="stdout.txt"
-antCmd="ant ToDoElementStructTest"
+antCmd="ant junitreport"
 
 if [ $# -eq 0 ]
 	then
@@ -12,13 +11,13 @@ if [ $# -eq 0 ]
 
 		for ((i=0; i < $numLoops; ++i))
 		do
-			eval $antCmd > $OUTFILE
+			eval $antCmd
 
-			if grep -R "Failures: 0" $OUTFILE
+			if grep -Rq "Failure" ./junit/all-tests.html
 			then
-				echo "No failures."
+				echo "Found failures. Email boss."
 			else
-				echo "Email the boss."
+				echo "No failures."
 			fi
 		done
 fi
