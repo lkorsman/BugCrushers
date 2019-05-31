@@ -12,8 +12,6 @@ if [[ ($# -eq 0) || ($# -eq 1) ]]
 		for ((i=0; i < $NumBackGroundProcesses; ++i))
 		do
 			eval $runTestSuite &
-			FOO_PID=$!
-			echo $FOO_PID
 		done
 		wait
 		echo Done

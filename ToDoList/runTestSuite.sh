@@ -2,17 +2,17 @@
 
 antCmd="ant junitreport"
 
-if [ -f "stdtxt.txt" ]
-then
-	rm stdtxt.txt
-fi
-
 if [ $# -eq 0 ]
 then
 	echo "No command line arguments"
 else
 	buildSuite="bash buildTestSuite.sh"
 	eval $buildSuite
+
+	if [ -f "stdtxt.txt" ]
+	then
+		rm stdtxt.txt
+	fi
 
 	NumberLoop=$1
 	startTime=$(date)
@@ -30,9 +30,9 @@ else
 		EmailResultsPerson=$2
 		if grep -Rq "Failures: 0" stdtxt.txt
 			then
-				echo "Junit tests PASSED!" | mutt -s "Junit Test Report" $EmailResultsPerson
+				echo "Junit tests PASSED!" | mutt -s "PASS" $EmailResultsPerson -a ./junit/all-tests.html
 			else
-				echo "Junit tests failed." | mutt -s "Junit Test Report" $EmailResultsPerson
+				echo "Junit tests failed." | mutt -s "FAIL" $EmailResultsPerson -a ./junit/all-tests.html
 		fi
 	fi
 fi
