@@ -7,8 +7,8 @@ import org.junit.runner.notification.Failure;
 public class TestRunner {
 
 	public static void main(String[] args) {
-		final String username = "l";
-		final String password = "";
+		// final String username = "";
+		// final String password = "";
 
 		StringBuilder sb = new StringBuilder();
 
@@ -42,10 +42,10 @@ public class TestRunner {
 		// try {
 		// Message message = new MimeMessage(session);
 		// message.setFrom(
-		// new InternetAddress("FROM@FAKE.EMAIL"));
+		// new InternetAddress("lukekorsmanspam@gmail.com"));
 		// message.setRecipients(
 		// Message.RecipientType.TO,
-		// InternetAddress.parse("TO@FAKE.EMAIL"));
+		// InternetAddress.parse("lukekorsman@gmail.com"));
 		// message.setSubject("ToDoListElementStructTest errors");
 		// message.setText("Dear Manager,"
 		// + "\n\nFailures found:\n" + sb.toString()

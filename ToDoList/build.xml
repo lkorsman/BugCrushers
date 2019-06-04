@@ -40,6 +40,7 @@
         <mkdir dir="bin"/>
         <copy includeemptydirs="false" todir="bin">
             <fileset dir="src">
+                <exclude name="**/*.launch"/>
                 <exclude name="**/*.java"/>
             </fileset>
         </copy>
@@ -95,7 +96,7 @@
             <classpath refid="ToDoList.classpath"/>
         </java>
     </target>
-    <target name="junitreport">
+    <target depends="ToDoElementStructTest,build" name="junitreport">
         <junitreport todir="${junit.output.dir}">
             <fileset dir="${junit.output.dir}">
                 <include name="TEST-*.xml"/>
